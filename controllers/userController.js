@@ -1,7 +1,18 @@
 const User = require("../models/User");
 const { use } = require("../router");
 
-exports.login = function () {};
+exports.login = function (req, res) {
+  let user = new User(req.body);
+  user
+    .login()
+    .then(function (result) {
+      res.send(result);
+    })
+    .catch(function (e) {
+      res.send(e);
+    });
+};
+
 exports.logout = function () {};
 
 exports.register = function (req, res) {
